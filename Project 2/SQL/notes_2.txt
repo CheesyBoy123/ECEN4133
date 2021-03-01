@@ -1,0 +1,12 @@
+username=victim
+Username is always escaped of special characters, password is hashed.
+Seems like we need to reverse our solution as a hash.
+
+Looks like there is a flaw in the md5 hash.  It outputs it's hash as binary.
+Because of this we can get special characters in our string.
+
+username=victim
+password=?
+binary_md5_hash(password)='OR 1=1#'1111111
+We need to shorten this hash if we want to brute force it.
+binary_md5_hash(password)='||1#.............

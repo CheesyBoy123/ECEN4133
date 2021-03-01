@@ -1,0 +1,2 @@
+We want to get the database's name.  I'm assuming that the SQL query goes something like:
+SELECT * FROM database WHERE id=$id;
