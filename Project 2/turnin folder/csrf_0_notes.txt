@@ -1,3 +1,0 @@
-I can post to https://project2.ecen4133.org/login?csrfdefense=0&xssdefense=4 shown on the site as ./login
-
-therefore I just need to imitate the form on the site, but set the values to my desired login and post it
